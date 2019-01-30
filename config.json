@@ -1,5 +1,6 @@
 {
     "port": 30086,
+    "sslPort": 30087,
     "folder": "/home/majora/Music",
     "icon": "gnac.png",
     "verbose": true,
@@ -12,5 +13,13 @@
     "daemon": {
         "mainApp": "api.js"
     },
-    "allowedCors": "*"
+    "allowedCors": "*",
+    "ssl": {
+        "key": "server.key",
+        "certificate": "server.crt"
+    },
+    "protocols": {
+        "http": true,
+        "https": false
+    }
 }

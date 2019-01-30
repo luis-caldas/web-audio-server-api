@@ -1,4 +1,6 @@
 .*
+*.crt
+*.key
 node_modules
 !.gitignore
 !.gitmodules

@@ -3,7 +3,10 @@
 "use strict";
 
 // package includes
+const         fs = require("fs");
 const       path = require("path");
+const       http = require("http");
+const      https = require("https");
 const    express = require("express");
 const bodyParser = require("body-parser");
 
@@ -38,10 +41,23 @@ var apiInfo = {
     "_version": packageConfig.version
 };
 
-// app starting verbose
-app.listen(config.port, () => {
-    if (config.verbose) console.log("API started on " + config.port);
-});
+if (config.protocols.http) {
+    var httpServer = http.createServer(app);
+    httpServer.listen(config.port, () => {
+        if (config.verbose) console.log("API started on " + config.port);
+    });
+}
+
+if (config.protocols.https) {
+    var httpsServer = https.createServer({
+        cert: fs.readFileSync(path.resolve(config.ssl.certificate)),
+        key: fs.readFileSync(path.resolve(config.ssl.key))
+    }, app);
+    httpsServer.listen(config.sslPort, () => {
+        if (config.verbose) console.log("API started on " + config.sslPort);
+    });
+}
+
 
 // favicon
 app.get(["/favicon.ico", "/favicon*", "/icon*"], (req, res) => {
