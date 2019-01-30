@@ -103,7 +103,7 @@ const returnDirValidContents = (dirPath, relativeAddition, allowedTypes, directo
             let foundResult = listExt.indexOf(fileExtNow);
 
             if (foundResult != -1) {
-                listItems.push([path.join(relativeAddition, dirContents[i]), allowedKeys[j]]);
+                listItems.push([dirContents, path.join(relativeAddition, dirContents[i]), allowedKeys[j]]);
                 break;
             }
 
