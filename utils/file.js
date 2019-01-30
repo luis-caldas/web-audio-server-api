@@ -83,7 +83,7 @@ const returnDirValidContents = (dirPath, relativeAddition, allowedTypes, directo
 
         // check if is dir
         if (validateDir(fullPath)) {
-            listItems.push([dirContents[i], directoryIdentificator]);
+            listItems.push([dirContents[i], path.join(relativeAddition, dirContents[i]), directoryIdentificator]);
             continue;
         }
 
@@ -103,7 +103,7 @@ const returnDirValidContents = (dirPath, relativeAddition, allowedTypes, directo
             let foundResult = listExt.indexOf(fileExtNow);
 
             if (foundResult != -1) {
-                listItems.push([dirContents, path.join(relativeAddition, dirContents[i]), allowedKeys[j]]);
+                listItems.push([dirContents[i], path.join(relativeAddition, dirContents[i]), allowedKeys[j]]);
                 break;
             }
 
