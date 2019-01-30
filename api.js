@@ -49,27 +49,27 @@ app.get(["/favicon.ico", "/favicon*", "/icon*"], (req, res) => {
 });
 
 // file request
-app.post("/file", (req, res) => {
+app.get("/file", (req, res) => {
 
     // needed parameters list
     let neededParameters = ["path"];
 
     // check if all parameters are present
-    let missingParametersList = parameterHandler.missingParameters(neededParameters, Object.keys(req.body));
+    let missingParametersList = parameterHandler.missingParameters(neededParameters, Object.keys(req.query));
     if (missingParametersList.length != 0) {
         res.send(errorHandler.buildErrorObject(parameterHandler.errorStringMissingParameters(missingParametersList)));
         return;
     }
 
     // check if there is a empty needed parameter
-    let missingIndex = parameterHandler.emptyParameters(neededParameters, req.body);
+    let missingIndex = parameterHandler.emptyParameters(neededParameters, req.query);
     if (missingIndex !== null) {
         res.send(errorHandler.buildErrorObject(parameterHandler.errorStringEmptyParameter(neededParameters[missingIndex])));
         return;
     }
 
     // extract the needed parameters
-    let pathNow = req.body.path;
+    let pathNow = req.query.path;
     // validate the path
     pathNow = fileHandler.validatePath(config.folder, pathNow);
 
