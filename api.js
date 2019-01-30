@@ -44,7 +44,40 @@ app.get("/favicon.ico", (req, res) => {
 // file request
 app.post("/file", (req, res) => {
 
-    res.send("Not implemented");
+    // needed parameters list
+    let neededParameters = ["path"];
+
+    // check if all parameters are present
+    let missingParametersList = parameterHandler.missingParameters(neededParameters, Object.keys(req.body));
+    if (missingParametersList.length != 0) {
+        res.send(errorHandler.buildErrorObject(parameterHandler.errorStringMissingParameters(missingParametersList)));
+        return;
+    }
+
+    // check if there is a empty needed parameter
+    let missingIndex = parameterHandler.emptyParameters(neededParameters, req.body);
+    if (missingIndex !== null) {
+        res.send(errorHandler.buildErrorObject(parameterHandler.errorStringEmptyParameter(neededParameters[missingIndex])));
+        return;
+    }
+
+    // extract the needed parameters
+    let pathNow = req.body.path;
+    // validate the path
+    pathNow = fileHandler.validatePath(config.folder, pathNow);
+
+    // create the relative path between folder and requested path
+    let relativeAddition = path.relative(config.folder, pathNow);
+
+    // check if is a file and valid
+    if (!fileHandler.validateFile(pathNow) || !fileHandler.isValidFile(pathNow, config.allow)) {
+        res.send(errorHandler.buildErrorObject("Given path is invalid"));
+        return;
+    }
+
+    // file is valid
+    // serve it
+    res.sendFile(pathNow);
 
 });
 

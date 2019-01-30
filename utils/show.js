@@ -8,7 +8,7 @@ const list = (listData) => {
     return {
         files: listData
     };
-}
+};
 
 // functions to be exported
 module.exports = {

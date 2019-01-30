@@ -6,11 +6,11 @@ const fs   = require("fs");
 
 const isPathConfigRoot = (rootDirectory, supposedDirectory) => {
     return path.resolve(rootDirectory) == path.resolve(supposedDirectory);
-}
+};
 
 const getFileExtension = (filePath) => {
     return path.extname(filePath).substring(1);
-}
+};
 
 const validatePath = (rootDirectory, supposedDirectory) => {
 
@@ -37,6 +37,36 @@ const validatePath = (rootDirectory, supposedDirectory) => {
 const validateDir = (supposedDirectory) => {
     return fs.existsSync(supposedDirectory) && fs.lstatSync(supposedDirectory).isDirectory();
 };
+
+const validateFile = (supposedFile) => {
+    return fs.existsSync(supposedFile) && fs.lstatSync(supposedFile).isFile();
+};
+
+const isValidFile = (filePath, allowedTypes) => {
+
+    // get the file extension
+    let fileExtNow = getFileExtension(filePath);
+
+    // match the returned extension and add to the allowed items if match
+    let allowedKeys = Object.keys(allowedTypes);
+
+    // iterate the types
+    for (let j = 0; j < allowedKeys.length; ++j) {
+
+        // simplify references
+        let listExt = allowedTypes[allowedKeys[j]];
+
+        // search for extension
+        let foundResult = listExt.indexOf(fileExtNow);
+
+        // is a valid file
+        if (foundResult != -1) return true;
+
+    }
+
+    // is not a valid file
+    return false;
+}
 
 const returnDirValidContents = (dirPath, relativeAddition, allowedTypes, directoryIdentificator) => {
 
@@ -82,11 +112,13 @@ const returnDirValidContents = (dirPath, relativeAddition, allowedTypes, directo
     }
 
     return listItems;
-}
+};
 
 // functions to be exported
 module.exports = {
     validatePath: validatePath,
     validateDir: validateDir,
+    validateFile: validateFile,
+    isValidFile: isValidFile,
     returnDirValidContents: returnDirValidContents
 };
