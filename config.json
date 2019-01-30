@@ -4,7 +4,7 @@
     "icon": "gnac.png",
     "verbose": true,
     "allow": {
-        "audio": ["mp3", "flac"],
+        "audio": ["mp3", "flac", "ogg"],
         "image": ["png", "jpg", "jpeg"],
         "misc": ["txt"]
     },
