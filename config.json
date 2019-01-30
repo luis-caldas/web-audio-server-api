@@ -11,5 +11,6 @@
     "directoryId": "dir",
     "daemon": {
         "mainApp": "api.js"
-    }
+    },
+    "allowedCors": "*"
 }

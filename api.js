@@ -25,6 +25,13 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const        config = require("./config.json");
 const packageConfig = require("./package.json");
 
+// for cors
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", config.allowedCors);
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
+
 // simple api info
 var apiInfo = {
     "_info": packageConfig.description,
