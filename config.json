@@ -1,0 +1,15 @@
+{
+    "port": 30086,
+    "folder": "/home/majora/Music",
+    "icon": "gnac.png",
+    "verbose": true,
+    "allow": {
+        "audio": ["mp3", "flac"],
+        "image": ["png", "jpg", "jpeg"],
+        "misc": ["txt"]
+    },
+    "directoryId": "dir",
+    "daemon": {
+        "mainApp": "api.js"
+    }
+}
