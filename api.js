@@ -37,7 +37,7 @@ app.listen(config.port, () => {
 });
 
 // favicon
-app.get("/favicon.ico", (req, res) => {
+app.get(["/favicon.ico", "/favicon*", "/icon*"], (req, res) => {
     res.sendFile(path.resolve(config.icon));
 });
 
