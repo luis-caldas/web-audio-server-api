@@ -2,7 +2,7 @@
     "port": 30086,
     "sslPort": 30087,
     "folder": "/home/majora/Music",
-    "icon": "gnac.png",
+    "icon": "icon.png",
     "verbose": true,
     "allow": {
         "audio": ["mp3", "flac", "ogg"],
