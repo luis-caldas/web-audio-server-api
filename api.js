@@ -29,12 +29,10 @@ const        config = require("./config.json");
 const packageConfig = require("./package.json");
 
 // check the folder path from the configuration
-(() => {
-    if (!fileHandler.validateDir(config.folder)) {
-        console.log("The given music folder path is invalid");
-        process.exit(1);  // there was an error, exit with code 1
-    }
-})();
+if (!fileHandler.validateDir(config.folder)) {
+    console.log("The given music folder path is invalid");
+    process.exit(1);  // there was an error, exit with code 1
+}
 
 // for cors
 app.use(function(req, res, next) {
