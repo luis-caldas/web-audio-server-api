@@ -1,6 +1,6 @@
 {
-    "port": 30086,
-    "sslPort": 30087,
+    "port": 81,
+    "sslPort": 443,
     "folder": "/home/majora/Music",
     "icon": "icon.png",
     "verbose": true,
@@ -10,16 +10,13 @@
         "misc": ["txt"]
     },
     "directoryId": "dir",
-    "daemon": {
-        "mainApp": "api.js"
-    },
     "allowedCors": "*",
     "ssl": {
         "key": "server.key",
         "certificate": "server.crt"
     },
     "protocols": {
-        "http": true,
-        "https": false
+        "http": false,
+        "https": true
     }
 }
