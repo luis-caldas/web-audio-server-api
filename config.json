@@ -1,5 +1,5 @@
 {
-    "port": 81,
+    "port": 80,
     "sslPort": 443,
     "folder": "/home/majora/Music",
     "icon": "icon.png",
