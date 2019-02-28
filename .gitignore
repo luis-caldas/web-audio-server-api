@@ -5,3 +5,6 @@
 node_modules
 !.gitignore
 !.gitmodules
+
+# configuration file
+config.json

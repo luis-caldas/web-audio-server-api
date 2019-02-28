@@ -1,7 +1,7 @@
 {
-    "port": 80,
-    "sslPort": 443,
-    "folder": "/home/majora/Music",
+    "port": 81,
+    "sslPort": 444,
+    "folder": "/path/to/your/music/folder",
     "icon": "icon.png",
     "verbose": true,
     "allow": {
@@ -12,8 +12,8 @@
     "directoryId": "dir",
     "allowedCors": "*",
     "ssl": {
-        "key": "server.key",
-        "certificate": "server.crt"
+        "key": "/path/to/your/ssl/key.pem",
+        "certificate": "/path/to/your/ssl/certificate.crt"
     },
     "protocols": {
         "http": false,
